@@ -1,4 +1,21 @@
-
+#### git使用
+```
+从远端克隆代码： git clone url
+拉取代码： git pull
+查看文件状态： git status
+文件修改添加到暂存区： git add 
+提交修改到本地仓库： git commit -m ''
+推送本地仓库变更到远端仓库： git push
+查看本地分支列表： git branch
+查看远端分支列表： git branch -r
+从远端拉取指定分支到本地：git checkout -b 分支名 origin/分支名
+合并分支：
+    先切换到目标分支： git checkout 目标分支（代码将被合并到此分支）
+    将源分支代码合并到当前分支： git merge 代码源分支
+从指定分支新建分支： git checkout -b 新分支 旧分支
+    相当于（创建分支+切换分支）git branch 分支名 + git checkout 分支名
+本地新建的分支推送到远端：     
+```
 
 #### 一、version-1（理解代理）
 参见：https://blog.csdn.net/dfBeautifulLive/article/details/124924441
