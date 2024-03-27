@@ -14,7 +14,8 @@
     将源分支代码合并到当前分支： git merge 代码源分支
 从指定分支新建分支： git checkout -b 新分支 旧分支
     相当于（创建分支+切换分支）git branch 分支名 + git checkout 分支名
-本地新建的分支推送到远端：     
+本地新建的分支推送到远端（远端不存在本地的这个分支）： git push -u origin 分支名
+查看本地分支与远端分支的绑定关系： git branch -vv
 ```
 
 #### 一、version-1（理解代理）
