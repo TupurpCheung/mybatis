@@ -14,7 +14,11 @@ public class MapperRegistry {
     private final Map<Class<?>, MapperProxyFactory<?>> cacheMappers = new HashMap<>();
 
     // 获取容器中的对象并生成代理对象
-    public <T> T getMapper(Class<T> type, SqlSession sqlSession) {
+
+    /**
+     * 从接口代理工厂创建代理类
+     */
+    public <T> T getMapperProxy(Class<T> type, SqlSession sqlSession) {
         final MapperProxyFactory<T> mapperProxyFactory = (MapperProxyFactory<T>) cacheMappers.get(type);
         if (mapperProxyFactory == null) {
             throw new RuntimeException("Type " + type + " is not known to the MapperRegistry.");
@@ -27,7 +31,10 @@ public class MapperRegistry {
         }
     }
 
-    public <T> void addMapper(Class<T> type) {
+    /**
+     * 给接口创建代理工厂，并缓存
+     */
+    public <T> void buildMapperProxyFactory(Class<T> type) {
         /* Mapper 必须是接口才会注册 */
         if (type.isInterface()) {
             if (hasMapper(type)) {
@@ -51,7 +58,7 @@ public class MapperRegistry {
         // 生成class对象，包下有几个类对象生成几个类对象
         Set<Class<?>> mapperSet = ClassScanner.scanPackage(packageName);
         for (Class<?> mapperClass : mapperSet) {
-            addMapper(mapperClass);
+            buildMapperProxyFactory(mapperClass);
         }
     }
 

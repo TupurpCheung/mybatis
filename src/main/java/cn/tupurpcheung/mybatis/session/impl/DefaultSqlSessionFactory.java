@@ -1,19 +1,24 @@
 package cn.tupurpcheung.mybatis.session.impl;
 
-import cn.tupurpcheung.mybatis.binding.MapperRegistry;
+import cn.tupurpcheung.mybatis.session.Configuration;
 import cn.tupurpcheung.mybatis.session.SqlSession;
 import cn.tupurpcheung.mybatis.session.SqlSessionFactory;
 
+/**
+ * 创建session
+ * */
 public class DefaultSqlSessionFactory implements SqlSessionFactory {
 
-    private MapperRegistry mapperRegistry;
 
-    public DefaultSqlSessionFactory(MapperRegistry mapperRegistry) {
-        this.mapperRegistry = mapperRegistry;
+    private Configuration configuration;
+
+
+    public DefaultSqlSessionFactory(Configuration configuration) {
+        this.configuration = configuration;
     }
 
     @Override
     public SqlSession openSession() {
-        return new DefaultSqlSession(mapperRegistry);
+        return new DefaultSqlSession(configuration);
     }
 }

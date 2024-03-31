@@ -59,6 +59,11 @@
             <version>1.18.24</version>
         </dependency>
         <!-- LOGGING end -->
+    <!--    <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis</artifactId>
+            <version>3.5.6</version>
+        </dependency>-->
 
 
         <dependency>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration xmlns="http://mybatis.tupurpcheung.cn/mybatis/1.0/config"
+               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               xsi:schemaLocation="http://mybatis.tupurpcheung.cn/mybatis/1.0/config ../../main/resources/xsd/mybatis-config.xsd">
+    <mappers>
+        <mapper resource="UserMapper.xml"/>
+    </mappers>
+
+</configuration>

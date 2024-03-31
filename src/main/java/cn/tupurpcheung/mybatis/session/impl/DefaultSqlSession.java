@@ -1,15 +1,17 @@
 package cn.tupurpcheung.mybatis.session.impl;
 
 import cn.tupurpcheung.mybatis.binding.MapperRegistry;
+import cn.tupurpcheung.mybatis.mapping.MappedStatement;
+import cn.tupurpcheung.mybatis.session.Configuration;
 import cn.tupurpcheung.mybatis.session.SqlSession;
 
 public class DefaultSqlSession implements SqlSession {
+    private Configuration configuration;
 
-    private MapperRegistry mapperRegistry;
-
-    public DefaultSqlSession(MapperRegistry mapperRegistry) {
-        this.mapperRegistry = mapperRegistry;
+    public DefaultSqlSession(Configuration configuration) {
+        this.configuration = configuration;
     }
+
 
     @Override
     public <T> T selectOne(String statement) {
@@ -18,11 +20,21 @@ public class DefaultSqlSession implements SqlSession {
 
     @Override
     public <T> T selectOne(String statement, Object[] parameter) {
-        return  (T) ("你被代理了！" + "方法：" + statement + " 入参：" + parameter[0]);
+        MappedStatement mappedStatement = configuration.getMappedStatement(statement);
+        return (T) ("你被代理了！" + "\n方法：" + statement + "\n入参：" + parameter[0] + "\n待执行SQL：" + mappedStatement.getSql());
+
+
     }
 
     @Override
     public <T> T getMapper(Class<T> type) {
-        return mapperRegistry.getMapper(type,this);
+        return configuration.getMapper(type, this);
     }
+
+    @Override
+    public Configuration getConfiguration() {
+        return configuration;
+    }
+
+
 }
