@@ -3,8 +3,29 @@
 <configuration xmlns="http://mybatis.tupurpcheung.cn/mybatis/1.0/config"
                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                xsi:schemaLocation="http://mybatis.tupurpcheung.cn/mybatis/1.0/config ../../main/resources/xsd/mybatis-config.xsd">
+
+    <environments default="dev">
+        <environment id="dev">
+            <dataSource type="h2">
+                <property name="driver" value="org.h2.Driver"/>
+                <property name="url" value="jdbc:h2:mem:mybatis;DB_CLOSE_DELAY=-1"/>
+                <property name="user" value="root"/>
+                <property name="password" value=""/>
+            </dataSource>
+        </environment>
+        <environment id="test">
+            <dataSource type="mysql">
+                <property name="driver" value="com.mysql.jdbc.Driver"/>
+                <property name="url" value="jdbc:mysql://127.0.0.1:3306/mybatis_demo?useUnicode=true"/>
+                <property name="username" value="root"/>
+                <property name="password" value="root"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+
     <mappers>
-        <mapper resource="UserMapper.xml"/>
+        <mapper resource="UserInfoMapper.xml"/>
     </mappers>
 
 </configuration>

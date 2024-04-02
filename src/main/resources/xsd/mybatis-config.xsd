@@ -22,9 +22,38 @@
     <xs:element name="configuration" type="configurationType"/>
     <xs:complexType name="configurationType">
         <xs:sequence>
+            <xs:element name="environments" type="environmentsType"/>
             <xs:element name="mappers" type="mappersType"/>
         </xs:sequence>
 
+    </xs:complexType>
+
+    <xs:complexType name="environmentsType">
+        <xs:sequence>
+            <xs:element name="environment" type="environmentType" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute name="default" type="xs:string" use="required"/>
+
+    </xs:complexType>
+
+    <xs:complexType name="environmentType">
+        <xs:sequence>
+            <xs:element name="dataSource" type="dataSourceType"/>
+        </xs:sequence>
+        <xs:attribute name="id" type="xs:string" use="required"/>
+    </xs:complexType>
+
+    <xs:complexType name="dataSourceType">
+        <xs:sequence>
+            <xs:element name="property" type="propertyType" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute name="type" type="xs:string" use="required"/>
+    </xs:complexType>
+
+
+    <xs:complexType name="propertyType">
+        <xs:attribute name="name" type="xs:string" use="required"/>
+        <xs:attribute name="value" type="xs:string" use="required"/>
     </xs:complexType>
 
     <xs:complexType name="mappersType">
@@ -36,4 +65,6 @@
     <xs:complexType name="mapperType">
         <xs:attribute name="resource" type="xs:string" use="required"/>
     </xs:complexType>
+
+
 </xs:schema>

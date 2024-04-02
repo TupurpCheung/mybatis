@@ -1,4 +1,4 @@
-package cn.tupurpcheung.mybatis.version1;
+package cn.tupurpcheung.mybatis;
 
 import org.junit.Test;
 

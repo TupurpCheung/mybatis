@@ -1,4 +1,4 @@
-package cn.tupurpcheung.mybatis.version1.service;
+package cn.tupurpcheung.mybatis.service;
 
 public interface RoleService {
     String queryRole(String roleId);

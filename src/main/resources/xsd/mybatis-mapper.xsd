@@ -23,7 +23,7 @@
     <xs:complexType name="mapperType">
 
         <xs:sequence>
-            <xs:element name="select" type="selectType"/>
+            <xs:element name="select" type="selectType" maxOccurs="unbounded"/>
         </xs:sequence>
         <xs:attribute name="namespace" type="xs:string" use="required"/>
     </xs:complexType>

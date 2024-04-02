@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mapper xmlns="http://mybatis.tupurpcheung.cn/mybatis/1.0/mapper"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://mybatis.tupurpcheung.cn/mybatis/1.0/mapper ../../main/resources/xsd/mybatis-mapper.xsd"
+        namespace="cn.tupurpcheung.mybatis.mapper.UserInfoMapper">
+    <select id="queryUserById" parameterType="java.lang.String" resultType="cn.tupurpcheung.mybatis.po.UserInfo">
+        SELECT id, name, sex, age
+        FROM user_info
+        where id = #{id}
+    </select>
+    <!--暂时还不知道多个参数该如何传-->
+    <select id="queryUser" parameterType="java.lang.String" resultType="cn.tupurpcheung.mybatis.po.UserInfo">
+        SELECT id, name, sex, age
+        FROM user_info
+        where name = #{name} and age = #{age}
+    </select>
+</mapper>
