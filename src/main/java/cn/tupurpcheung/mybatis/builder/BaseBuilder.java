@@ -7,14 +7,13 @@ import cn.tupurpcheung.mybatis.transaction.TransactionFactory;
 
 public class BaseBuilder {
 
-    protected TypeAliasRegistry<DataSourceFactory> dataSourceFactoryTypeAliasRegistry;
-    protected TypeAliasRegistry<TransactionFactory> transactionFactoryTypeAliasRegistry;
+    protected TypeAliasRegistry typeAliasRegistry;
+
     protected Configuration configuration;
 
     public BaseBuilder(Configuration configuration) {
         this.configuration = configuration;
-        this.dataSourceFactoryTypeAliasRegistry = configuration.getDataSourceTypeAliasRegistry();
-        this.transactionFactoryTypeAliasRegistry = configuration.getTransactionTypeAliasRegistry();
+        this.typeAliasRegistry = configuration.getTypeAliasRegistry();
 
     }
 

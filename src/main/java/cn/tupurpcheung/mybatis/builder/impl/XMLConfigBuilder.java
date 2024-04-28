@@ -70,7 +70,7 @@ public class XMLConfigBuilder extends BaseBuilder {
                 // 数据源
                 Element dataSourceElement = e.element(DATASOURCE_ELEMENT_NAME);
                 // 从类型注册机里找到DRUID名字的并得到类DataSourceFactory
-                DataSourceFactory dataSourceFactory =  dataSourceFactoryTypeAliasRegistry
+                DataSourceFactory dataSourceFactory =  (DataSourceFactory)typeAliasRegistry
                         .resolveAlias(dataSourceElement.attributeValue(TYPE_ATTRIBUTE_NAME)).newInstance();
                 // 获取xml中数据源的属性数据
                 List<Element> propertiesList = dataSourceElement.elements(PROPERTY_ELEMENT_NAME);

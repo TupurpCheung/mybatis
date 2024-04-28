@@ -27,14 +27,15 @@ public class Configuration {
     //环境
     protected Environment environment;
 
-    protected TypeAliasRegistry<DataSourceFactory> dataSourceFactoryTypeAliasRegistry = new TypeAliasRegistry<>();
-    protected TypeAliasRegistry<TransactionFactory> transactionFactoryTypeAliasRegistry = new TypeAliasRegistry<>();
+    protected TypeAliasRegistry typeAliasRegistry = new TypeAliasRegistry();
 
     public Configuration() {
         //数据源
-        dataSourceFactoryTypeAliasRegistry.registerAlias("h2", H2DataSourceFactory.class);
+        typeAliasRegistry.registerAlias("h2", H2DataSourceFactory.class);
+        //todo 修改为mysql数据源工厂
+        typeAliasRegistry.registerAlias("mysql", H2DataSourceFactory.class);
         //事务管理器
-        transactionFactoryTypeAliasRegistry.registerAlias("jdbc", JdbcTransactionFactory.class);
+        typeAliasRegistry.registerAlias("jdbc", JdbcTransactionFactory.class);
 
     }
 
@@ -70,11 +71,9 @@ public class Configuration {
         return environment;
     }
 
-    public TypeAliasRegistry getDataSourceTypeAliasRegistry() {
-        return dataSourceFactoryTypeAliasRegistry;
+    public TypeAliasRegistry getTypeAliasRegistry() {
+        return typeAliasRegistry;
     }
 
-    public TypeAliasRegistry getTransactionTypeAliasRegistry() {
-        return transactionFactoryTypeAliasRegistry;
-    }
+
 }
