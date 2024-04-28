@@ -26,3 +26,8 @@
 3、SqlSession 获取 mapper 时，通过MapperProxyFactory 创建 mapper的代理（本版本是执行sqlSession自身的selectOne方法）
 4、真正执行的是sqlSession的方法
 ```
+
+
+#### 二、version-2（自定义xsd，读取xml配置）
+
+#### 三、version-3（引入H2内存数据库，真实读取数据库）
