@@ -31,3 +31,7 @@
 #### 二、version-2（自定义xsd，读取xml配置）
 
 #### 三、version-3（引入H2内存数据库，真实读取数据库）
+
+
+#### 四、version-4（数据源池化处理实现）
+参见：https://blog.csdn.net/dfBeautifulLive/article/details/127361278
