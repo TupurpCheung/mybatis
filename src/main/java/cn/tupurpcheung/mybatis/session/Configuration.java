@@ -3,6 +3,8 @@ package cn.tupurpcheung.mybatis.session;
 import cn.tupurpcheung.mybatis.binding.MapperRegistry;
 import cn.tupurpcheung.mybatis.datasource.DataSourceFactory;
 import cn.tupurpcheung.mybatis.datasource.druid.H2DataSourceFactory;
+import cn.tupurpcheung.mybatis.datasource.pooled.PooledDataSourceFactory;
+import cn.tupurpcheung.mybatis.datasource.unpooled.UnpooledDataSourceFactory;
 import cn.tupurpcheung.mybatis.mapping.Environment;
 import cn.tupurpcheung.mybatis.mapping.MappedStatement;
 import cn.tupurpcheung.mybatis.mapping.TypeAliasRegistry;
@@ -32,6 +34,8 @@ public class Configuration {
     public Configuration() {
         //数据源
         typeAliasRegistry.registerAlias("h2", H2DataSourceFactory.class);
+        typeAliasRegistry.registerAlias("unPooled", UnpooledDataSourceFactory.class);
+        typeAliasRegistry.registerAlias("pooled", PooledDataSourceFactory.class);
         //todo 修改为mysql数据源工厂
         typeAliasRegistry.registerAlias("mysql", H2DataSourceFactory.class);
         //事务管理器

@@ -1,5 +1,7 @@
 package cn.tupurpcheung.mybatis.datasource.unpooled;
 
+import org.slf4j.LoggerFactory;
+
 import javax.sql.DataSource;
 import java.io.PrintWriter;
 import java.sql.*;
@@ -10,6 +12,8 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.logging.Logger;
 
 public class UnpooledDataSource implements DataSource {
+
+    private static org.slf4j.Logger LOGGER = LoggerFactory.getLogger(UnpooledDataSource.class);
     private ClassLoader driverClassLoader;
 
     //驱动配置
@@ -36,6 +40,7 @@ public class UnpooledDataSource implements DataSource {
         Enumeration<Driver> drivers = DriverManager.getDrivers();
         while (drivers.hasMoreElements()) {
             Driver driver = drivers.nextElement();
+            LOGGER.info("exist jdbc driver:{}",driver.getClass());
             registeredDrivers.put(driver.getClass().getName(), driver);
         }
 
