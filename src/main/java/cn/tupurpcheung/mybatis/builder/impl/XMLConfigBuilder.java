@@ -85,11 +85,10 @@ public class XMLConfigBuilder extends BaseBuilder {
                 DataSource dataSource = dataSourceFactory.getDataSource();
 
                 // todo 实现事务管理器
-                //TransactionFactory txFactory = (TransactionFactory) typeAliasRegistry
-                 //       .resolveAlias(e.element(TRANSACTION_MANAGER_ELEMENT_NAME).attributeValue(TYPE_ATTRIBUTE_NAME)).newInstance();
+                TransactionFactory txFactory = (TransactionFactory) typeAliasRegistry.resolveAlias(e.element(TRANSACTION_MANAGER_ELEMENT_NAME).attributeValue(TYPE_ATTRIBUTE_NAME)).newInstance();
 
                 // 构建环境-通过建造者模式
-                Environment.Builder environmentBuilder = new Environment.Builder(id).dataSource(dataSource);
+                Environment.Builder environmentBuilder = new Environment.Builder(id).dataSource(dataSource).transactionFactory(txFactory);
 
                 // 将环境信息存储到配置里configuration供其他需要的地方使用
                 configuration.setEnvironment(environmentBuilder.build());

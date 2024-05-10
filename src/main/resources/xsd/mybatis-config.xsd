@@ -39,22 +39,49 @@
     <xs:complexType name="environmentType">
         <xs:sequence>
             <xs:element name="dataSource" type="dataSourceType"/>
+            <xs:element name="transactionManager" type="transactionManagerType"/>
         </xs:sequence>
         <xs:attribute name="id" type="xs:string" use="required"/>
     </xs:complexType>
 
     <xs:complexType name="dataSourceType">
         <xs:sequence>
-            <xs:element name="property" type="propertyType" maxOccurs="unbounded"/>
+            <xs:element name="property" type="dataSourcePropertyType" maxOccurs="unbounded"/>
         </xs:sequence>
-        <xs:attribute name="type" type="xs:string" use="required"/>
+        <xs:attribute name="type" type="dataSourceTypeAttributeType" use="required"/>
     </xs:complexType>
+    <xs:simpleType name="dataSourceTypeAttributeType">
+        <xs:restriction base="xs:string">
+            <!-- 这里定义property name的模式 -->
+            <xs:pattern value="h2|unPooled|pooled|mysql" />
+        </xs:restriction>
+    </xs:simpleType>
 
 
-    <xs:complexType name="propertyType">
-        <xs:attribute name="name" type="xs:string" use="required"/>
+    <xs:complexType name="dataSourcePropertyType">
+        <xs:attribute name="name" type="dataSourcePropertyNameType" use="required"/>
         <xs:attribute name="value" type="xs:string" use="required"/>
     </xs:complexType>
+
+    <xs:simpleType name="dataSourcePropertyNameType">
+        <xs:restriction base="xs:string">
+            <!-- 这里定义property name的模式 -->
+            <xs:pattern value="driver|url|username|password" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="transactionManagerType">
+        <xs:attribute name="type" type="transactionManagerPropertyType" use="required"/>
+    </xs:complexType>
+
+    <xs:simpleType name="transactionManagerPropertyType">
+        <xs:restriction base="xs:string">
+            <!-- 这里定义property name的模式 -->
+            <xs:pattern value="jdbc" />
+        </xs:restriction>
+    </xs:simpleType>
+
+
 
     <xs:complexType name="mappersType">
         <xs:sequence>

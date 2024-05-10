@@ -1,14 +1,20 @@
 package cn.tupurpcheung.mybatis.session;
 
 import cn.tupurpcheung.mybatis.binding.MapperRegistry;
-import cn.tupurpcheung.mybatis.datasource.DataSourceFactory;
 import cn.tupurpcheung.mybatis.datasource.druid.H2DataSourceFactory;
 import cn.tupurpcheung.mybatis.datasource.pooled.PooledDataSourceFactory;
 import cn.tupurpcheung.mybatis.datasource.unpooled.UnpooledDataSourceFactory;
+import cn.tupurpcheung.mybatis.executor.Executor;
+import cn.tupurpcheung.mybatis.executor.SimpleExecutor;
+import cn.tupurpcheung.mybatis.executor.resultsets.DefaultResultSetHandler;
+import cn.tupurpcheung.mybatis.executor.resultsets.ResultSetHandler;
+import cn.tupurpcheung.mybatis.executor.statement.PreparedStatementHandler;
+import cn.tupurpcheung.mybatis.executor.statement.StatementHandler;
+import cn.tupurpcheung.mybatis.mapping.BoundSql;
 import cn.tupurpcheung.mybatis.mapping.Environment;
 import cn.tupurpcheung.mybatis.mapping.MappedStatement;
 import cn.tupurpcheung.mybatis.mapping.TypeAliasRegistry;
-import cn.tupurpcheung.mybatis.transaction.TransactionFactory;
+import cn.tupurpcheung.mybatis.transaction.Transaction;
 import cn.tupurpcheung.mybatis.transaction.jdbc.JdbcTransactionFactory;
 
 import java.util.HashMap;
@@ -78,6 +84,27 @@ public class Configuration {
     public TypeAliasRegistry getTypeAliasRegistry() {
         return typeAliasRegistry;
     }
+
+
+    /**
+     * 生产执行器
+     */
+    public Executor newExecutor(Transaction transaction) {
+        return new SimpleExecutor(this, transaction);
+    }
+
+
+    public StatementHandler newStatementHandler(SimpleExecutor simpleExecutor, MappedStatement ms, Object[] parameter ) {
+        return new PreparedStatementHandler(simpleExecutor,ms,parameter);
+    }
+
+    /**
+     * 创建结果集处理器
+     */
+    public ResultSetHandler newResultSetHandler(MappedStatement mappedStatement) {
+        return new DefaultResultSetHandler( mappedStatement);
+    }
+
 
 
 }

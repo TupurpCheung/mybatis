@@ -67,8 +67,7 @@ public class ApiTest {
         System.out.println(userInfo);
         Assert.assertEquals("Bob", userInfo.getName());
 
-        userInfo = userInfoMapper.queryUser("tupurpcheung", 22);
-        System.out.println(userInfo);
+
     }
 
     //PooledDataSource 获取连接后放入活跃池中，若close，则会放入空闲池，如果空闲池满，则关闭真实连接

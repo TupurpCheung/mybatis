@@ -4,6 +4,7 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://mybatis.tupurpcheung.cn/mybatis/1.0/mapper ../../main/resources/xsd/mybatis-mapper.xsd"
         namespace="cn.tupurpcheung.mybatis.mapper.UserInfoMapper">
+
     <select id="queryUserById" parameterType="java.lang.String" resultType="cn.tupurpcheung.mybatis.po.UserInfo">
         SELECT id, name, sex, age
         FROM user_info
